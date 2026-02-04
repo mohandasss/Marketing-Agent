@@ -10,7 +10,7 @@ function AppContents() {
       <Route path="/" element={<SplashPage />} />
       {/* Public Routes */}
       <Route element={<AppShell />}>
-        {" "}
+        
         <Route path="/login" element={<Login />} />
       </Route>
 
@@ -19,7 +19,7 @@ function AppContents() {
       {/* 404 Fallback */}
       <Route path="*" element={<NotFound />} />
     </Routes>
-  );
+  )
 }
 
 export default AppContents;
