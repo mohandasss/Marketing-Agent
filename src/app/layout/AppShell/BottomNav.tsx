@@ -1,0 +1,48 @@
+import { NavLink } from "react-router-dom";
+import { LayoutDashboard, ClipboardList, User, BellDot } from "lucide-react";
+import clsx from "clsx";
+
+const tabs = [
+  { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { to: "/assignments", label: "Assignments", icon: ClipboardList },
+  { to: "/profile", label: "Profile", icon: User },
+  { to: "/notifications", label: "Notifications", icon: BellDot },
+];
+
+export default function BottomNav() {
+  const profileImage = "https://images.pexels.com/photos/30004312/pexels-photo-30004312.jpeg"
+
+  return (
+    <nav className="app-bottom-nav safe-bottom border-t bg-white">
+      <ul className="flex">
+        {tabs.map(({ to, label, icon: Icon }) => (
+          <li key={to} className="flex-1">
+            <NavLink
+              to={to}
+              className={({ isActive }) =>
+                clsx(
+                  "flex flex-col items-center gap-1 py-2 text-xs transition-colors",
+                  isActive ? "text-[#0D52AF]" : "text-gray-400",
+                )
+              }
+            >
+              {to === "/profile" ? (
+                <img
+                  src={
+                    profileImage ??
+                    "https://multilangbridge.in/uploads/website-images/frontend-avatar.png"
+                  }
+                  alt="profile"
+                  className="w-6 h-6 rounded-full object-cover" 
+                />
+              ) : (
+                <Icon size={20} />
+              )}
+              <span>{label}</span>
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
